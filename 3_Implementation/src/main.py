@@ -19,11 +19,11 @@ class Aggregator:
     #  Validation (PS Number) from all sheets
 
     def get_input(self, c=0):
-        query = input("Enter PS Number / Email / Name: ")
+        query = input("Enter PS Number / Email / Name: ")        # query is what we've provided in input
         if query and c < 3:  # check if user has entered something or not
             try:
-                query = int(query)
-                searchid = "Ps No"
+                query = int(query)              # change ps no as integer
+                searchid = "Ps No"              # ps no is saved as searchid
             except ValueError:
                 if "@" in query:
                     searchid = "Email"
