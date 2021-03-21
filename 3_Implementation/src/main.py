@@ -40,7 +40,7 @@ class Aggregator:
     # values of dataframe gets stored in x and we're updating the fields.
 
     def search(self, query, searchid):
-        print(f"Searching {searchid.lower()} `{query}`...")
+        print(f"Searching {searchid.lower()} `{query}`...")    # searchid is converted to lowercase
         fields = {}
         for x in self.dfs.values():
             fields.update(
@@ -63,7 +63,7 @@ class Aggregator:
 
         book = load_workbook(self.worksheet)  # loading the workbook
         with pd.ExcelWriter(self.worksheet, engine="openpyxl", mode="a") as writer:  # opening a Excel Writer instance
-            writer.book = book  # changing the workbook of the writer to our current workbook
+            writer.book = book  # changing the workbook of the writer to our current workbook, file is uploaded
             writer.sheets = {ws.title: ws for ws in book.worksheets}  # adding the worksheets to it
             # getting the last row if not found set it to 0
             try:
@@ -97,9 +97,9 @@ class Aggregator:
 
         data = Reference(book[MSHEET], min_col=1, min_row=4,
                          max_col=2, max_row=book[MSHEET].max_row)
-        cats = Reference(book[MSHEET], min_col=1, min_row=2, max_row=7)
+        x = Reference(book[MSHEET], min_col=1, min_row=2, max_row=7)
         chart1.add_data(data, titles_from_data=True)
-        chart1.set_categories(cats)
+        chart1.set_categories(x)
         chart1.shape = 4
         book[MSHEET].add_chart(chart1, "A10")
         book.save(WORKSHEET)
